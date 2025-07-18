@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/process-engine
+    username: camunda
+    password: camunda
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  reactor:
+    debug-agent:
+      enabled: on
+
+camunda:
+  bpm:
+    authorization:
+
+      enabled: true
+
+      enabled-for-custom-code: true
+    admin-user:
+      id: demo
+      password: demo
+      first-name: Demo
+    database:
+      type: postgres
+      schema-update: true
+    client:
+      base-url: http://localhost:8080/engine-rest
+      async-response-timeout: 10000
+      lock-duration: 10000
+      worker-id: credit-check
+
+

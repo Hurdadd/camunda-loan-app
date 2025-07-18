@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_00jjg18" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.12.0">
+  <decision id="loanApprovalDecision" name="Loan Approval Decision" camunda:historyTimeToLive="P30D">
+    <decisionTable id="DecisionTable_0ph0ewe">
+      <input id="InputClause_15ttjgj">
+        <inputExpression id="LiteralExpression_1lgt7im" typeRef="integer">
+          <text>creditScore</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1wjf6o8" label="Loan Amount">
+        <inputExpression id="LiteralExpression_1d73k5v" typeRef="double">
+          <text>amount</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1umum9x" label="Application Status" name="applicationStatus" typeRef="string" />
+      <rule id="DecisionRule_1ktzlb5">
+        <inputEntry id="UnaryTests_04ew5u0">
+          <text>&gt; 750</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06m0ew9">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0xmge22">
+          <text>"APPROVED"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_05bflg1">
+        <inputEntry id="UnaryTests_03g17xt">
+          <text>&gt; 650</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mu29ha">
+          <text>&lt; 10000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1q1p18b">
+          <text>"APPROVED"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0r4y40s">
+        <inputEntry id="UnaryTests_1jdipza">
+          <text>&gt; 650</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1h6yimd">
+          <text>&gt;= 10000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_09vf7z7">
+          <text>"MANUAL_REVIEW_REQUIRED"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1c4ifxa">
+        <inputEntry id="UnaryTests_16fbqau">
+          <text>&lt;= 650</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10rcn85">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04f5smv">
+          <text>"REJECTED"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="DMNShape_0blhka7" dmnElementRef="loanApprovalDecision">
+        <dc:Bounds height="80" width="180" x="160" y="80" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
